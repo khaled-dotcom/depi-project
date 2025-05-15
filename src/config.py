@@ -15,7 +15,10 @@ API_KEY = os.getenv('API_KEY')
 class Settings:
     # Server settings
     HOST: str = os.getenv("HOST", "0.0.0.0")
-    PORT: int = int(os.getenv("PORT", "8000"))
+    try:
+        PORT: int = int(os.getenv("PORT", "8000")) if os.getenv("PORT") else 8000
+    except ValueError:
+        PORT: int = 8000
     API_KEY: str = os.getenv("API_KEY")
     
     # MediaPipe settings
